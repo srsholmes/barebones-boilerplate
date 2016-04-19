@@ -3,4 +3,4 @@ npm-debug.log
 .DS_Store
 .idea
 .env
-./public/assets/
+./public/assets/*

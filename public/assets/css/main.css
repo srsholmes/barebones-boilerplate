@@ -1,5 +1,60 @@
+* {
+  box-sizing: border-box; }
+
 body {
   margin: auto;
   text-align: center;
   width: 80%;
   font-family: Arial; }
+  body .compare-namer-input {
+    border: 2px solid black;
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    z-index: 10; }
+  body.hover-all img, body.hover-all a, body.hover-all li {
+    cursor: pointer; }
+  body.hover-all img:hover {
+    border: 2px solid green; }
+  body.hover-all a:hover {
+    border: 2px solid blue; }
+  body.hover-all ul:hover {
+    border: 2px solid #ff2bc1; }
+  body.hover-all li:hover {
+    border: 2px solid #27a9ff; }
+  body.hover-all p:hover {
+    border: 2px solid #ff9119; }
+  body.hover-all h1:hover, body.hover-all h2:hover, body.hover-all h3:hover, body.hover-all h4:hover, body.hover-all h5:hover {
+    border: 2px solid #ff2438; }
+
+.wrapper {
+  flex-direction: row; }
+  .wrapper li {
+    width: 20%;
+    display: inline-block; }
+  .wrapper .img-wrapper {
+    width: 100%; }
+    .wrapper .img-wrapper img {
+      width: 100%; }
+
+.compare-button-wrapper {
+  position: fixed;
+  bottom: 5%;
+  right: 5%; }
+  .compare-button-wrapper button {
+    background: red;
+    color: white;
+    height: 30px;
+    width: 90%;
+    border: none;
+    font-size: 15px; }
+
+.comparison-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3); }

@@ -191,6 +191,7 @@ body {
 
 .compare-button-wrapper {
   position: fixed;
+  z-index: 99999;
   bottom: 5%;
   right: 5%; }
   .compare-button-wrapper button {

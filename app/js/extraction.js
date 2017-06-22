@@ -1,10 +1,11 @@
 ((w, d) => {
   console.log('EXTRACT....');
   const body = document.querySelector('body');
-  const validClasses = [ 'price', 'station', 'description' ];
+  const validClasses = [ 'price', 'desc', 'station', 'description', 'title', 'features', 'tel', 'phone', 'details', 'floorplan', 'info' ];
 
   function getDomPath(el) {
-    if (!el) {
+    console.log('EL', el);
+    if (!el || el === document.body) {
       return;
     }
     const obj = {};
@@ -58,35 +59,36 @@
     //return stack.join(' > ');
   }
 
-  const createEntry = (target) => {
-    console.log('createEntry', target)
+  const createEntry = (target, match) => {
+    console.log('createEntry', target);
     return {
+      matchedClass: match,
       title: target.classList,
       path: getDomPath(target),
       node: target,
+      sampleText: target.innerText,
     };
   };
 
   const nodes = document.getElementsByTagName("*");
-  const res = [ ...nodes ].reduce((acc, curr) => {
-    const classArray = curr.classList;
-    const hasValidClass = validClasses.some((testClass) => {
-      const res = [ ...classArray ].some((x) => {
-        return x.includes(testClass);
-      });
-      return res;
-    });
-    return hasValidClass ? [ ...acc, createEntry(curr) ] : acc;
+
+  const res = validClasses.reduce((acc, currentClass) => {
+    const nodeArr = [ ...nodes ].reduce((acc, currentNode) => {
+      const { classList } = currentNode;
+      const hasValidClass = [ ...classList ].some(x => x.includes(currentClass));
+      return hasValidClass ? [ ...acc, currentNode ] : acc;
+    }, []);
+
+    const res = nodeArr.reduce((acc, curr) => {
+      return [ ...acc, createEntry(curr, currentClass) ];
+    }, [])
+
+    return [ ...acc, res ];
   }, []);
 
 
   console.log('***********');
   console.log(res);
   console.log('************');
-
-
-  // Loop over nodes, check the classname, if contains something in the validClasses, then add to the array, using
-  // createEntry. Title will be the title of the validNode. If the entry in the valid Node has been used, dont include
-  // it next loop?
 
 })(window, document);
